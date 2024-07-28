@@ -7,6 +7,8 @@ import AssignedDataChart from './Components/AssignedDataChart';
 import DataCard from './Components/DataCard';
 import Pros from './Components/Pros';
 import Cons from './Components/Cons';
+import StockData from './Components/StockData';
+
 import './styles.css';
 
 function App() {
@@ -21,6 +23,17 @@ function App() {
     "Market volatility",
     "Regulatory risks"
   ];
+
+  const stockData = {
+    name: "Company XYZ",
+    symbol: "XYZ",
+    price: 123.45,
+    keyPoints: [
+      "Leading market position",
+      "Diversified product portfolio",
+      "Strong R&D capabilities"
+    ]
+  };
 
   return (
     <div className="App">
@@ -44,7 +57,17 @@ function App() {
         <section className="section data-charts-section">
           <Row>
             <Col md={4}><DonutChart /></Col>
-            <Col md={7}><AssignedDataChart /></Col>
+            <Col md={7}>
+            <Card className="shadow-box">
+                <Card.Body>
+                  <StockData
+                    name={stockData.name}
+                    symbol={stockData.symbol}
+                    price={stockData.price}
+                    keyPoints={stockData.keyPoints}
+                  />
+                </Card.Body>
+              </Card></Col>
           </Row>
         </section>
         
