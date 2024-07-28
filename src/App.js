@@ -1,12 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import NavBar from './components/NavBar';
-import DonutChart from './components/DonutSentimentChart';
-import AssignedDataChart from './components/AssignedDataChart';
-import DataCard from './components/DataCard';
-import Pros from './components/Pros';
-import Cons from './components/Cons';
+import NavBar from './Components/NavBar';
+import DonutChart from './Components/DonutSentimentChart';
+import AssignedDataChart from './Components/AssignedDataChart';
+import DataCard from './Components/DataCard';
+import Pros from './Components/Pros';
+import Cons from './Components/Cons';
 import './styles.css';
 
 function App() {
