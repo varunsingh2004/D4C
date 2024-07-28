@@ -3,8 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import NavBar from './Components/NavBar';
 import DonutChart from './Components/DonutSentimentChart';
-import AssignedDataChart from './Components/AssignedDataChart';
-import DataCard from './Components/DataCard';
 import Pros from './Components/Pros';
 import Cons from './Components/Cons';
 import StockData from './Components/StockData';
