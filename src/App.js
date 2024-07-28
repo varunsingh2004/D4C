@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import NavBar from './Components/NavBar';
@@ -8,6 +8,7 @@ import DataCard from './Components/DataCard';
 import Pros from './Components/Pros';
 import Cons from './Components/Cons';
 import StockData from './Components/StockData';
+import StockSearch from './Components/StockSearch';
 
 import './styles.css';
 
@@ -24,7 +25,7 @@ function App() {
     "Regulatory risks"
   ];
 
-  const stockData = {
+  const [stockData, setStockData] = useState({
     name: "Company XYZ",
     symbol: "XYZ",
     price: 123.45,
@@ -33,6 +34,20 @@ function App() {
       "Diversified product portfolio",
       "Strong R&D capabilities"
     ]
+  });
+
+  const handleSearch = (query) => {
+    // Simulate a stock search
+    setStockData({
+      name: `Company ${query}`,
+      symbol: query.toUpperCase(),
+      price: Math.random() * 200,
+      keyPoints: [
+        "Simulated key point 1",
+        "Simulated key point 2",
+        "Simulated key point 3"
+      ]
+    });
   };
 
   return (
@@ -40,15 +55,11 @@ function App() {
       <NavBar />
       <Container fluid>
         
-        {/* Data Cards Section */}
-        <section className="section data-cards-section">
+        {/* Search Bar Section */}
+        <section className="section search-bar-section">
           <Card className="shadow-box">
             <Card.Body>
-              <Row>
-                <Col><DataCard title="Number of Annotators" value={23} /></Col>
-                <Col><DataCard title="Number of Linguistics" value={43} /></Col>
-                <Col><DataCard title="Number of Groups" value={43} /></Col>
-              </Row>
+              <StockSearch onSearch={handleSearch} />
             </Card.Body>
           </Card>
         </section>
