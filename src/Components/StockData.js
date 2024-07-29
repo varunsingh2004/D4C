@@ -3,11 +3,10 @@ import { Card } from 'react-bootstrap';
 
 function StockData({ name, symbol, price, keyPoints }) {
   return (
-    <Card className="mb-4">
+    <Card>
       <Card.Body>
         <Card.Title>{name} ({symbol})</Card.Title>
-        <h5>Price: ${price}</h5>
-        <h6>Key Points:</h6>
+        <Card.Text>Price: ${price.toFixed(2)}</Card.Text>
         <ul>
           {keyPoints.map((point, index) => (
             <li key={index}>{point}</li>

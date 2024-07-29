@@ -1,12 +1,33 @@
 import React, { useState } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
+import { fetchStockData } from '../api';
 
 function StockSearch({ onSearch }) {
   const [query, setQuery] = useState('');
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
-    onSearch(query);
+    try {
+      const stockData = await fetchStockData(query);
+      // Simulate sentiment analysis data
+      const sentimentData = {
+        name: stockData.name,
+        symbol: stockData.symbol,
+        price: stockData.price,
+        keyPoints: [
+          "Leading market position",
+          "Diversified product portfolio",
+          "Strong R&D capabilities"
+        ],
+        sentiment: {
+          pros: ["High growth potential", "Strong financials", "Innovative products"],
+          cons: ["High valuation", "Market volatility", "Regulatory risks"]
+        }
+      };
+      onSearch(sentimentData);
+    } catch (error) {
+      console.error('Error fetching sentiment analysis', error);
+    }
   };
 
   return (
