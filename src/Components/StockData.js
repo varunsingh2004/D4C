@@ -1,17 +1,13 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-function StockData({ name, symbol, price, keyPoints }) {
+function StockData({ name, symbol, price, description }) {
   return (
     <Card>
       <Card.Body>
         <Card.Title>{name} ({symbol})</Card.Title>
         <Card.Text>Price: ${price.toFixed(2)}</Card.Text>
-        <ul>
-          {keyPoints.map((point, index) => (
-            <li key={index}>{point}</li>
-          ))}
-        </ul>
+        <Card.Text>{description}</Card.Text>
       </Card.Body>
     </Card>
   );

@@ -11,14 +11,10 @@ function StockSearch({ onSearch }) {
       const stockData = await fetchStockData(query);
       // Simulate sentiment analysis data
       const sentimentData = {
-        name: stockData.name,
+        name: stockData.companyName,
         symbol: stockData.symbol,
         price: stockData.price,
-        keyPoints: [
-          "Leading market position",
-          "Diversified product portfolio",
-          "Strong R&D capabilities"
-        ],
+        description: stockData.description,
         sentiment: {
           pros: ["High growth potential", "Strong financials", "Innovative products"],
           cons: ["High valuation", "Market volatility", "Regulatory risks"]

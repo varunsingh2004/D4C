@@ -16,7 +16,7 @@ function App() {
     name: "",
     symbol: "",
     price: 0,
-    keyPoints: []
+    description: []
   });
 
   const handleSearch = (data) => {
@@ -24,7 +24,7 @@ function App() {
       name: data.name,
       symbol: data.symbol,
       price: data.price,
-      keyPoints: data.keyPoints
+      description: data.description
     });
     setPros(data.sentiment.pros);
     setCons(data.sentiment.cons);
@@ -55,7 +55,7 @@ function App() {
                     name={stockData.name}
                     symbol={stockData.symbol}
                     price={stockData.price}
-                    keyPoints={stockData.keyPoints}
+                    description={stockData.description}
                   />
                 </Card.Body>
               </Card>
