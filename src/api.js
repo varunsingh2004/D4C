@@ -1,10 +1,8 @@
 import axios from 'axios';
-
-const apiKey = 'bM1WsHq26yEqhF0zsmDSXDyxG2gfwFsm';
-
+const API_KEY = process.env.REACT_APP_FINMODEL_API_KEY;
 export const fetchStockData = async (stockSymbol) => {
   try {
-    const response = await axios.get(`https://financialmodelingprep.com/api/v3/profile/${stockSymbol}?apikey=${apiKey}`);
+    const response = await axios.get(`https://financialmodelingprep.com/api/v3/profile/${stockSymbol}?apikey=${API_KEY}`);
     return response.data[0];
   } catch (error) {
     console.error('Error fetching stock data', error);

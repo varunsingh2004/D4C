@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const endpoint = 'https://laguage-service-bobhackathon.cognitiveservices.azure.com/';
-const apiKey = '70c1218559594f169098fc377d3f2329';
+const endpoint = process.env.REACT_APP_AZURE_COGNATIVE_SERVICES_ENDPOINT;
+const apiKey = process.env.REACT_APP_AZURE_API_KEY;
 
 const analyzeSentiment = async (textInput) => {
   const url = `${endpoint}/text/analytics/v3.0/sentiment`;
