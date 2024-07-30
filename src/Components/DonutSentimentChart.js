@@ -1,49 +1,75 @@
-import React, { useRef, useEffect } from 'react';
-import { Chart } from 'chart.js/auto';
+import React from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale } from 'chart.js';
+import PropTypes from 'prop-types';
 
-function DonutChart() {
-  const chartRef = useRef(null);
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale);
 
-  useEffect(() => {
-    const ctx = chartRef.current.getContext('2d');
-    const data = {
-      labels: [
-        'Red',
-        'Blue',
-        'Yellow'
-      ],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+function DonutSentimentChart({ sentimentScores, isLoading, colors }) {
+  if (isLoading) {
+    return <div>Loading chart...</div>;
+  }
+
+  const data = {
+    labels: ["Positive", "Neutral", "Negative"],
+    datasets: [
+      {
+        data: [
+          sentimentScores.positive,
+          sentimentScores.neutral,
+          sentimentScores.negative
         ],
-        hoverOffset: 4
-      }]
-    };
+        backgroundColor: colors || ['#28a745', '#ffc107', '#dc3545'],
+        borderColor: ['#ffffff', '#ffffff', '#ffffff'],
+        borderWidth: 1,
+      }
+    ]
+  };
 
-    const config = {
-      type: 'doughnut',
-      data: data,
-    };
-
-    const myChart = new Chart(ctx, config);
-
-    return () => {
-      myChart.destroy();
-    };
-  }, []);
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            let label = context.label || '';
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed !== null) {
+              label += Math.round(context.parsed * 100) + '%';
+            }
+            return label;
+          }
+        }
+      }
+    },
+  };
 
   return (
-    <div className="chart-container">
-      <h3>Sentiment of Stock</h3>
-      <div className="canvas-container">
-        <canvas ref={chartRef}></canvas>
-      </div>
+    <div style={{ height: '300px', width: '100%' }} aria-label="Sentiment Analysis Donut Chart">
+      <Doughnut data={data} options={options} />
     </div>
   );
 }
 
-export default DonutChart;
+DonutSentimentChart.propTypes = {
+  sentimentScores: PropTypes.shape({
+    positive: PropTypes.number,
+    neutral: PropTypes.number,
+    negative: PropTypes.number
+  }).isRequired,
+  isLoading: PropTypes.bool,
+  colors: PropTypes.arrayOf(PropTypes.string)
+};
+
+DonutSentimentChart.defaultProps = {
+  isLoading: false,
+  colors: ['#28a745', '#ffc107', '#dc3545']
+};
+
+export default DonutSentimentChart;

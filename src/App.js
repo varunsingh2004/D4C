@@ -2,33 +2,60 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import NavBar from './Components/NavBar';
-import DonutChart from './Components/DonutSentimentChart';
 import StockData from './Components/StockData';
 import StockSearch from './Components/StockSearch';
 import Pros from './Components/Pros';
 import Cons from './Components/Cons';
 import './styles.css';
+import DonutSentimentChart from './Components/DonutSentimentChart';
+import analyzeSentiment from './sentimentService';
 
 function App() {
   const [pros, setPros] = useState([]);
   const [cons, setCons] = useState([]);
+  const [sentimentScores, setSentimentScores] = useState({
+    positive: 0,
+    neutral: 1,
+    negative: 0
+  });
   const [stockData, setStockData] = useState({
     name: "",
     symbol: "",
     price: 0,
-    description: []
+    description: [],
+    analysis: ""
   });
 
-  const handleSearch = (data) => {
+  const handleSearch = async (data) => {
     setStockData({
       name: data.name,
       symbol: data.symbol,
       price: data.price,
-      description: data.description
+      description: data.description,
+      analysis: data.analysis
     });
-    setPros(data.sentiment.pros);
-    setCons(data.sentiment.cons);
+  
+    try {
+      const sentimentData = await analyzeSentiment(data.description);
+      setPros(sentimentData.sentiment === 'positive' ? [data.description] : []);
+      setCons(sentimentData.sentiment === 'negative' ? [data.description] : []);
+      setSentimentScores(sentimentData.confidenceScores);
+      
+      console.log('Sentiment:', sentimentData.sentiment);
+      console.log('Scores:', sentimentData.confidenceScores);
+    } catch (error) {
+      console.error('Error analyzing sentiment:', error);
+    }
   };
+
+  // useEffect(() => {
+  //   // Call the test sentiment analysis function on component mount
+  //   const getTestSentimentScores = async () => {
+  //     const scores = await testSentimentAnalysis();
+  //     setSentimentScores(scores);
+  //   };
+  //   getTestSentimentScores();
+  // }, []);
 
   return (
     <div className="App">
@@ -47,7 +74,7 @@ function App() {
         {/* Data Charts Section */}
         <section className="section data-charts-section">
           <Row>
-            <Col md={4}><DonutChart /></Col>
+            <Col md={4}><DonutSentimentChart sentimentScores={sentimentScores} /></Col>
             <Col md={7}>
               <Card className="shadow-box">
                 <Card.Body>
@@ -57,6 +84,7 @@ function App() {
                     price={stockData.price}
                     description={stockData.description}
                   />
+                  <p>{stockData.analysis}</p>
                 </Card.Body>
               </Card>
             </Col>
