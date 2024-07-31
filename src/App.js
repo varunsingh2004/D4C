@@ -48,14 +48,6 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   // Call the test sentiment analysis function on component mount
-  //   const getTestSentimentScores = async () => {
-  //     const scores = await testSentimentAnalysis();
-  //     setSentimentScores(scores);
-  //   };
-  //   getTestSentimentScores();
-  // }, []);
 
   return (
     <div className="App">

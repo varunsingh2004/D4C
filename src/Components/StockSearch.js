@@ -12,19 +12,6 @@ function StockSearch({ onSearch }) {
   const [suggestions, setSuggestions] = useState([]);
   const [recentSearches, setRecentSearches] = useState([]);
 
-  // const debouncedFetchSuggestions = useCallback(
-  //   debounce(async (input) => {
-  //     if (input.length < 2) return;
-  //     try {
-  //       const result = await fetchStockSuggestions(input);
-  //       setSuggestions(result);
-  //     } catch (error) {
-  //       console.error('Error fetching suggestions', error);
-  //     }
-  //   }, 300),
-  //   []
-  // );
-
   const handleInputChange = (e) => {
     const input = e.target.value;
     setQuery(input);
