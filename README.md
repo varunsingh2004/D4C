@@ -1,10 +1,15 @@
-# Getting Started with Create React App
+# Sentiment-Driven Market Intelligence Model
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App]
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+The Sentiment-Driven Market Intelligence Model is a web application designed to analyze and visualize market sentiments for stocks. It leverages sentiment analysis to assess the sentiment of stock descriptions and provides interactive charts and financial insights for users. The application is built using React and integrates with Azure Cognitive Services for sentiment analysis and Financial Modeling Prep API for stock data.
+
+## Features
+*Search for Stocks: Enter a stock symbol to fetch and display relevant data.
+*Sentiment Analysis: Analyze and visualize sentiment scores using a donut chart.
+*Financial Overview: View and compare financial metrics like revenue and net income.
 
 ### `npm start`
 
