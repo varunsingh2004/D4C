@@ -12,7 +12,7 @@ The Sentiment-Driven Market Intelligence Model is a web application designed to 
 ***Financial Overview**: View and compare financial metrics like revenue and net income.
 
 ## Installation
-Follow these steps to set up the project locally:
+Follow these steps to set up the project locally:\
 ***1. Clone the Repository:***
 ```bash
 git clone https://github.com/varunsingh2004/D4C-Sentiment-Analysis-in-Finance.git
