@@ -62,13 +62,21 @@ Navigate between "Revenue" and "Net Income" tabs to view financial charts and me
 The project uses the following dependencies:\
 
 ****React:*** A JavaScript library for building user interfaces.\
+
 ****Bootstrap:*** A CSS framework for styling.\
+
 ****React-Bootstrap:*** Bootstrap components for React.\
+
 ****Chart.js:*** A charting library for visualizing data.\
+
 ****react-chartjs-2:*** React components for Chart.js.\
-***axios:*** A promise-based HTTP client for making API requests.\
-***lodash:*** A utility library for JavaScript.\
-***prop-types:*** Runtime type checking for React props.\
+
+****axios:*** A promise-based HTTP client for making API requests.\
+
+****lodash:*** A utility library for JavaScript.\
+
+****prop-types:*** Runtime type checking for React props.\
+
 To install these dependencies, run:\
 ```bash
 npm install react-bootstrap bootstrap chart.js react-chartjs-2 axios lodash prop-types
