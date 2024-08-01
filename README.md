@@ -1,6 +1,6 @@
 # Sentiment-Driven Market Intelligence Model
 
-This project was bootstrapped with [Create React App]
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 ## Project Overview
 
@@ -96,7 +96,7 @@ If you'd like to contribute to this project, please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/varunsingh2004/D4C-Sentiment-Analysis-in-Finance/blob/main/LICENSE) file for details.
 
 ## Conact
 
