@@ -1,12 +1,16 @@
 import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { BarChart2 } from 'lucide-react';
 
 function NavBar({ brand, links, theme }) {
   return (
     <Navbar bg={theme} variant={theme === 'light' ? 'light' : 'dark'} expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="/">{brand}</Navbar.Brand>
+        <Navbar.Brand href="/" className="d-flex align-items-center">
+          <BarChart2 size={24} className="me-2" />
+          <span className="fw-bold">{brand}</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -50,7 +54,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  brand: 'TextEmotion',
+  brand: 'Sentiment Analyzer',
   links: [
     { href: '#', label: 'Dashboard' },
     { href: '#', label: 'Assigned' },
