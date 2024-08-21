@@ -22,6 +22,20 @@ function App() {
     description: "",
     analysis: ""
   });
+  const [verdict, setVerdict] = useState("");
+
+  const getVerdictClass = (verdict) => {
+    switch (verdict) {
+      case 'Buy':
+        return 'verdict-buy';
+      case 'Sell':
+        return 'verdict-sell';
+      case 'Hold':
+        return 'verdict-hold';
+      default:
+        return '';
+    }
+  };
 
   const handleSearch = async (data) => {
     setStockData({
@@ -31,15 +45,26 @@ function App() {
       description: data.description,
       analysis: data.analysis
     });
-  
+
     try {
       const sentimentData = await analyzeSentiment(data.description);
       setSentimentScores(sentimentData.confidenceScores);
-      
+
       console.log('Sentiment:', sentimentData.sentiment);
       console.log('Scores:', sentimentData.confidenceScores);
+
+      // Determine the verdict
+      const { positive, neutral, negative } = sentimentData.confidenceScores;
+      if (positive > neutral + negative) {
+        setVerdict("Buy");
+      } else if (negative > positive + neutral) {
+        setVerdict("Sell");
+      } else {
+        setVerdict("Hold");
+      }
     } catch (error) {
       console.error('Error analyzing sentiment:', error);
+      setVerdict("Error in analysis");
     }
   };
 
@@ -60,7 +85,12 @@ function App() {
         {/* Data Charts Section */}
         <section className="section data-charts-section">
           <Row>
-            <Col md={4}><DonutSentimentChart sentimentScores={sentimentScores} /></Col>
+            <Col md={4}>
+              <DonutSentimentChart sentimentScores={sentimentScores} />
+              <div className={`verdict ${getVerdictClass(verdict)}`}>
+                <h3>Verdict: {verdict}</h3>
+              </div>
+            </Col>
             <Col md={7}>
               <Card className="shadow-box">
                 <Card.Body>

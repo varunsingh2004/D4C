@@ -34,3 +34,22 @@ body {
 .pros-cons h5 {
   margin-top: 0;
 }
+
+.verdict {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.verdict-buy {
+  color: #28a745;
+}
+
+.verdict-sell {
+  color: #dc3545;
+}
+
+.verdict-hold {
+  color: #ffc107;
+}
